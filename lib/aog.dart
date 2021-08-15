@@ -22,16 +22,25 @@ class _AogState extends State<Aog> {
       setState(() {
         _textoResultado = " Digite corretamente todos os campos ";
       });
-    } else if ((precoAlcool / precoGasolina) < 0.70) {
-      setState(() {
-        _textoResultado = " A relação ficou abaixo de 0.70 melhor usar Alcool ";
-      });
     } else {
-      setState(() {
-        _textoResultado =
-            " A relação ficou acima de 0.70 melhor usar Gasolina ";
-      });
+        if ((precoAlcool / precoGasolina) < 0.70) {
+        setState(() {
+          _textoResultado = " A relação ficou abaixo de 0.70 melhor usar Alcool ";
+        });
+      } else {
+        setState(() {
+          _textoResultado =
+              " A relação ficou acima de 0.70 melhor usar Gasolina ";
+        });
+      }
+      _limparCampos();
+      
     }
+  }
+
+  void _limparCampos(){
+    _controllerAlcool.text = "";
+    _controllerGasolina.text = "";
   }
 
   @override
